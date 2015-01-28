@@ -22,7 +22,7 @@
 (defn -main [& args]
   (OpenCV/loadShared)
   (let [^Rect roi-rect (Rect. 300 200 20 20)
-        ^VideoCapture cap (VideoCapture. (first args))
+        ^VideoCapture cap (VideoCapture. ^String (first args))
         ^Mat frame (Mat.)
         ^Mat hsv-roi (Mat.)
         ^Mat mask (Mat.)]

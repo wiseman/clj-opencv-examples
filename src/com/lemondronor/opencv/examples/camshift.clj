@@ -36,12 +36,12 @@
 (defn -main [& args]
   (OpenCV/loadShared)
   (let [roi-rect (atom (Rect. 300 200 20 20))
-        ^VideoCapture cap (VideoCapture. (first args))
+        ^VideoCapture cap (VideoCapture. ^String (first args))
         ^Mat frame (Mat.)
         ^Mat hsv-roi (Mat.)
         ^Mat mask (Mat.)]
     (.read cap frame)
-    (let [^Mat roi (Mat. frame @roi-rect)
+    (let [^Mat roi (Mat. frame ^Rect @roi-rect)
           ^Mat roi-hist (Mat.)]
       (Imgproc/cvtColor roi hsv-roi Imgproc/COLOR_BGR2HSV)
       (Core/inRange
